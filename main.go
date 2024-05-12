@@ -114,12 +114,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	//astAddr, err := net.ResolveUDPAddr("udp", fmt.Sprintf("%s:%d", AstHost, AstudpPort))
-	//if err != nil {
-	//	fmt.Printf("Error resolving UDP address for Asterisk External Media: %v\n", err)
-	//	os.Exit(1)
-	//}
-
 	// Create a UDP connection
 	conn, err := net.ListenUDP("udp4", udpAddr)
 	if err != nil {
@@ -183,31 +177,6 @@ func main() {
 		//_, _ = conn.WriteToUDP(buffer[:n], addr)
 		//log.Printf("payload:\n%s\n", pkt.String())
 		log.Printf("Received Audio from %s", addr.String())
-
-		// RTCP (appears that packets are not abble to do RTCP)
-		//pkts, err := rtcp.Unmarshal(buffer[:n])
-		//if err != nil {
-		//	fmt.Printf("Error reading from UDP: %v\n", err)
-		//} else {
-		//	for _, pkt := range pkts {
-		//		switch p := pkt.(type) {
-		//		case *rtcp.CompoundPacket:
-		//			data, err := p.Marshal()
-		//			if err != nil {
-		//				fmt.Printf("failed getting raw bytes[]")
-		//				continue
-		//			}
-		//			fileData = append(fileData, data...)
-		//		case *rtcp.ExtendedReport: log.Printf("report: %s", p.String())
-		//		case *rtcp.CCFeedbackReport:
-		//			log.Printf("CCFeedbackReport: %s", p.String())
-		//		case *rtcp.FullIntraRequest:
-		//			log.Printf("FullIntraRequest: %s", p.String())
-		//		case *rtcp.Goodbye:
-		//			log.Printf("Goodbye: %s", p.String())
-		//		}
-		//	}
-		//}
 
 		n = 0
 		for n == 0 {
